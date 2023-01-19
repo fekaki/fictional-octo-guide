@@ -5,6 +5,10 @@ const router = express.Router();
 
 // router.param('id', tourController.checkID);
 
+router
+  .route('/top-5-cheap')
+  .get(tourController.aliasTopTours, tourController.getAllTours);
+
 // Create a checkBody middleware
 // Check if body contains the name and price property
 // if not, send back 400 (bad request)
