@@ -22,7 +22,7 @@ exports.getTour = catchAsync(async (req, res) => {
   });
   // 2) build template
 
-  //3) render tempalte using the date from 1)
+  //3) render template using the date from 1)
 
   res.status(200).render("tour", {
     title: `${tour.name} Tour`,
