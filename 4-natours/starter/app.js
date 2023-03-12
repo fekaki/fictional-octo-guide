@@ -23,12 +23,25 @@ app.set("views", path.join(__dirname, "./views"));
 // 1) GLOBAL MIDDLEWARES
 // Serving static files
 app.use(express.static(path.join(__dirname, "public")));
+
 // set security HTTP headers
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'", "blob:", "https://*.mapbox.com"],
+//       scriptSrc: ["'self'", "https://*.mapbox.com", "'unsafe-inline'", "blob:"],
+//     },
+//   })
+// );
+
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", "blob:", "https://*.mapbox.com"],
-      scriptSrc: ["'self'", "https://*.mapbox.com", "'unsafe-inline'", "blob:"],
+      defaultSrc: ["'self'", "https:", "http:", "data:", "ws:"],
+      baseUri: ["'self'"],
+      fontSrc: ["'self'", "https:", "http:", "data:"],
+      scriptSrc: ["'self'", "https:", "http:", "blob:"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
     },
   })
 );
