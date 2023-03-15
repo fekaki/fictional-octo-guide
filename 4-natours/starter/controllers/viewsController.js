@@ -50,6 +50,22 @@ exports.getLoginForm = (req, res) => {
       "connect-src 'self' https://cdnjs.cloudflare.com"
     )
     .render("login", {
-      titile: "Log into tour account",
+      title: "Log into tour account",
     });
+};
+
+exports.getAccount = (req, res) => {
+  res
+    .status(200)
+    .set(
+      "Content-Security-Policy",
+      "connect-src 'self' https://cdnjs.cloudflare.com"
+    )
+    .render("account", {
+      title: "Your account",
+    });
+
+  // res.status(200).render("account", {
+  //   title: "Your account",
+  // });
 };
