@@ -13,7 +13,13 @@ module.exports = class Email {
   newTransport() {
     if (process.env.NODE_ENV === "production") {
       // send grid
-      return 1;
+      return nodemailer.createTransport({
+        service: "SendGrid",
+        auth: {
+          user: process.env.SENDGRID_USERNAME,
+          pass: process.env.SENDGRID_PASSWORD,
+        },
+      });
     }
 
     return nodemailer.createTransport({
@@ -37,7 +43,8 @@ module.exports = class Email {
 
     // 2) Define email oprions
     const mailOptions = {
-      from: this.from,
+      // from: this.from,
+      from: process.env.SENDGRID_EMAIL_FROM,
       to: this.to,
       subject,
       html,
